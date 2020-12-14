@@ -95,7 +95,7 @@
 
 <body>
     <div class="logo-image">                                
-       <a href="index.html"><img class="img-responsive" src="/resources/images/logo.png" alt=""> </a> 
+       <a id="home" href="#"><img class="img-responsive" src="/resources/images/logo.png" alt=""> </a> 
     </div>
      <section id="coming-soon">        
          <div class="container">
@@ -113,18 +113,19 @@
                     </div>                    
                 </div>
                 <div class="col-sm-12">
+                    <h1>관리자 등록화면</h1>
                     <div class="time-count">
-                        <form action="/action_page.php" style="border:1px solid #ccc">
+                        <form style="border:1px solid #ccc">
                             <div class="container">
                               <h1>Sign Up</h1>
                               <p>Please fill in this form to create an account.</p>
                               <hr>
                           
                               <label for="email"><b>Email</b></label>
-                              <input type="text" placeholder="Enter Email" name="email" required>
+                              <input type="text" placeholder="Enter Email" id="email" required>
                           
                               <label for="psw"><b>Password</b></label>
-                              <input type="password" placeholder="Enter Password" name="psw" required>
+                              <input type="password" placeholder="Enter Password" id="password" required>
                           
                               <label for="psw-repeat"><b>Repeat Password</b></label>
                               <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
@@ -137,7 +138,7 @@
                           
                               <div class="clearfix">
                                 <button type="button" class="cancelbtn">Cancel</button>
-                                <button type="submit" class="signupbtn">Sign Up</button>
+                                <button type="submit" id="signupbtn" class="signupbtn">Sign Up</button>
                               </div>
                             </div>
                           </form>
@@ -186,15 +187,28 @@
     <script type="text/javascript" src="/resources/js/wow.min.js"></script>
     <script type="text/javascript" src="/resources/js/coundown-timer.js"></script>
     <script type="text/javascript" src="/resources/js/main.js"></script>
-    <script type="text/javascript">
-        //Countdown js
-        $("#countdown").countdown({
-            date: "10 march 2015 12:00:00",
-            format: "on"
-        },      
-        function() {
-            // callback function
-        });
+    <script>
+        $('#home').click(e => { location.href = '/'})
+        $('#signupbtn').click(e => {
+            e.preventDefault()
+            $.ajax({
+                url: `/managers`,
+                type: 'POST',
+                data: JSON.stringify({
+                    email: $('#email').val(),
+                    password: $('#password').val()
+                }),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: d => {
+
+                },
+                error: e => {
+                    console.log(`관리자등록 실패: ${e.responseText}`)
+                    location.href = '/move/cmm/404'
+                }
+            })
+        })
     </script>
     
 </body>

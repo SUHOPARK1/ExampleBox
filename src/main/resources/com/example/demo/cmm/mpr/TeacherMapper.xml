@@ -5,5 +5,12 @@
    <insert id="insert" parameterType="com.example.demo.sym.service.model.TeacherDto">
     insert into teachers (name, password, subject) 
     values (#{name}, #{password}, #{subject})
+
    </insert>
+   <!-- teaNum, name, email, password, subject, profileImage -->
+   
+   <select id="selectAll" resultType="com.example.demo.sym.service.model.TeacherDto">
+    select tea_num teaNum, name, email, password, subject, profile_image profileImage
+    from teachers 
+   </select>
 </mapper>

@@ -541,7 +541,7 @@
 					$.ajax({
 						url:'/teachers',
 						type:'PUT',
-						date:JSON.stringify({
+						data:JSON.stringify({
 							teaNum: d.teaNum, 
 							subject: $(`#changeSubject`).val(),
 							email: $(`#changeEmail`).val()

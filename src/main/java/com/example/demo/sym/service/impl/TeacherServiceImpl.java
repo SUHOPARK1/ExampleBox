@@ -23,4 +23,19 @@ public class TeacherServiceImpl implements TeacherService {
     public List<?> list() {
         return teacherMapper.selectAll();
     }
+
+    @Override
+    public TeacherDto findById(String teaNum) {
+        return teacherMapper.selectById(teaNum);
+    }
+
+    @Override
+    public int update(TeacherDto teacher) {
+        return teacherMapper.update(teacher);
+    }
+
+    @Override
+    public int delete(TeacherDto teacher) {
+        return teacherMapper.delete(teacher);
+    }
 }
